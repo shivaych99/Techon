@@ -4,19 +4,10 @@ pipeline {
             stage('Build') {
                 steps {
                 bat 'npm install'
+		bat 'npm audit fix'
             	}
        	    }
-       	    stage('Test') {
-                steps {
-                bat './jenkins/scripts/test.sh'
-            	}
-            }
-            stage('Deliver') {
-            	steps {
-                bat './jenkins/scripts/deliver.sh'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                bat './jenkins/scripts/kill.sh'
-            	}
-	        }
+       	    
+            
        }
 } 
